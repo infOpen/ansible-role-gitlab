@@ -9,3 +9,13 @@
     version: "{{ item.version | default(omit) }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ gitlab_system_prerequisites }}"
+
+
+- name: 'INSTALL | APT | Manage Gitlab GPG keys'
+  apt_key:
+    url: "{{ item.url }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ gitlab_gpg_keys }}"
+
+
+#- name: 'INSTALL | APT | Configure Gitlab repository'

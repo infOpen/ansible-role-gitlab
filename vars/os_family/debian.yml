@@ -3,6 +3,12 @@
 # Debian OS family variables
 #------------------------------------------------------------------------------
 
+# GPG key management
+_gitlab_gpg_keys:
+  - url: "https://packages.gitlab.com/gitlab/{{ gitlab_edition }}/gpgkey"
+    state: 'present'
+
+# System prerequisites
 _gitlab_system_prerequisites:
   - name: 'apt-transport-https'
   - name: 'ca-certificates'

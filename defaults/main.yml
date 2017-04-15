@@ -3,5 +3,9 @@
 # Defaults vars file for gitlab role
 #------------------------------------------------------------------------------
 
+# General
+gitlab_edition: 'gitlab-ce'
+
 # Package management
 gitlab_system_prerequisites: "{{ _gitlab_system_prerequisites }}"
+gitlab_gpg_keys: "{{ _gitlab_gpg_keys }}"
