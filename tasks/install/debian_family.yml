@@ -1,0 +1,11 @@
+---
+
+# Install tasks for Debian family
+#------------------------------------------------------------------------------
+
+- name: 'INSTALL | APT | Install system prerequisites'
+  apt:
+    name: "{{ item.name }}"
+    version: "{{ item.version | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ gitlab_system_prerequisites }}"

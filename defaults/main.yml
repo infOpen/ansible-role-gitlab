@@ -1,3 +1,7 @@
 ---
 
 # Defaults vars file for gitlab role
+#------------------------------------------------------------------------------
+
+# Package management
+gitlab_system_prerequisites: "{{ _gitlab_system_prerequisites }}"

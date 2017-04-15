@@ -1,0 +1,12 @@
+---
+
+# Debian OS family variables
+#------------------------------------------------------------------------------
+
+_gitlab_system_prerequisites:
+  - name: 'apt-transport-https'
+  - name: 'ca-certificates'
+  - name: 'curl'
+  - name: 'debian-archive-keyring'
+  - name: 'openssh-server'
+  - name: 'postfix'

@@ -7,3 +7,10 @@
   tags:
     - 'role::gitlab'
     - 'role::gitlab::init'
+
+
+- name: 'INSTALL | Manage Gitlab installation tasks'
+  include: "{{ role_path }}/tasks/install/{{ ansible_os_family | lower }}_family.yml"
+  tags:
+    - 'role::gitlab'
+    - 'role::gitlab::install'
