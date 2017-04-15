@@ -42,3 +42,14 @@ def test_repositories(File, SystemInfo):
     for repository_file in repositories_files:
         assert File(repository_file).exists
         assert File(repository_file).is_file
+
+
+def test_gitlab_community_packages(Package):
+    """
+    Check Gitlab packages installed
+    """
+
+    packages = ['gitlab-ce']
+
+    for package in packages:
+        assert Package(package).is_installed

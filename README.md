@@ -44,6 +44,16 @@ $ MOLECULE_DRIVER=vagrant tox
 ### Default role variables
 
 ``` yaml
+# General
+gitlab_edition: 'gitlab-ce'
+
+# Package management
+gitlab_gpg_keys: "{{ _gitlab_gpg_keys }}"
+gitlab_package_cache_valid_time: 3600
+gitlab_package_repositories: "{{ _gitlab_package_repositories }}"
+gitlab_packages:
+  - name: "{{ gitlab_edition }}"
+gitlab_system_prerequisites: "{{ _gitlab_system_prerequisites }}"
 ```
 
 ## Dependencies

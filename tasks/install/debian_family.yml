@@ -34,3 +34,11 @@
     update_cache: True
     cache_valid_time: "{{ gitlab_package_cache_valid_time }}"
   when: 'not gitlab_register_repositories | changed'
+
+
+- name: 'INSTALL | APT | Install Gitlab packages'
+  apt:
+    name: "{{ item.name }}"
+    version: "{{ item.version | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ gitlab_packages }}"
