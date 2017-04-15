@@ -23,3 +23,22 @@ def test_system_prerequisites(Package, SystemInfo):
 
     for package in packages:
         assert Package(package).is_installed
+
+
+def test_repositories(File, SystemInfo):
+    """
+    Check repositories files
+    """
+
+    repositories_files = []
+
+    if SystemInfo.distribution.lower() in ['debian', 'ubuntu']:
+        repositories_files = [
+            '/etc/apt/sources.list.d/gitlab.list',
+            '/etc/apt/sources.list.d/gitlab-src.list']
+    else:
+        pytest.skip('Not apply to %s' % SystemInfo.distribution)
+
+    for repository_file in repositories_files:
+        assert File(repository_file).exists
+        assert File(repository_file).is_file

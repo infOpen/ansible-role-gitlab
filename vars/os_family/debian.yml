@@ -8,6 +8,13 @@ _gitlab_gpg_keys:
   - url: "https://packages.gitlab.com/gitlab/{{ gitlab_edition }}/gpgkey"
     state: 'present'
 
+# Package repositories
+_gitlab_package_repositories:
+  - filename: 'gitlab'
+    repo: "deb https://packages.gitlab.com/gitlab/{{ gitlab_edition }}/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release | lower }} main"
+  - filename: 'gitlab-src'
+    repo: "deb-src https://packages.gitlab.com/gitlab/{{ gitlab_edition }}/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release | lower }} main"
+
 # System prerequisites
 _gitlab_system_prerequisites:
   - name: 'apt-transport-https'

@@ -18,4 +18,19 @@
   with_items: "{{ gitlab_gpg_keys }}"
 
 
-#- name: 'INSTALL | APT | Configure Gitlab repository'
+- name: 'INSTALL | APT | Configure Gitlab repositories'
+  apt_repository:
+    filename: "{{ item.filename | default(omit) }}"
+    mode: "{{ item.mode | default(omit) }}"
+    repo: "{{ item.repo }}"
+    update_cache: True
+    state: "{{ item.state | default('present') }}"
+  register: 'gitlab_register_repositories'
+  with_items: "{{ gitlab_package_repositories }}"
+
+
+- name: 'INSTALL | APT | Update packages list if repositories not updated'
+  apt:
+    update_cache: True
+    cache_valid_time: "{{ gitlab_package_cache_valid_time }}"
+  when: 'not gitlab_register_repositories | changed'
